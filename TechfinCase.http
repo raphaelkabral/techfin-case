@@ -1,0 +1,46 @@
+@baseUrl = http://localhost:5212
+@token = COLE_O_TOKEN_AQUI
+@clientId = COLE_O_GUID_DO_CLIENTE_AQUI
+
+### Registrar usuário
+POST {{baseUrl}}/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "email": "dev@teste.com",
+  "senha": "123456"
+}
+
+### Login
+POST {{baseUrl}}/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "dev@teste.com",
+  "senha": "123456"
+}
+
+### Cadastrar cliente
+POST {{baseUrl}}/api/v1/clientes
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nome": "Cliente Teste",
+  "cpf": "12345678900",
+  "valorLimite": 1000
+}
+
+### Listar clientes
+GET {{baseUrl}}/api/v1/clientes
+Authorization: Bearer {{token}}
+
+### Simular transação
+POST {{baseUrl}}/api/v1/transacoes
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "idCliente": "{{clientId}}",
+  "valorSimulacao": 100
+}

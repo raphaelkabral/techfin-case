@@ -11,9 +11,7 @@ namespace TechfinCase.Api.Controllers.V1;
 public sealed class TransactionsController(ISender sender) : ControllerBase
 {
     [HttpPost]
-    public async Task<IActionResult> Simulate(
-        [FromBody] SimulateTransactionCommand command,
-        CancellationToken cancellationToken)
+    public async Task<IActionResult> Simulate([FromBody] SimulateTransactionCommand command, CancellationToken cancellationToken)
     {
         var result = await sender.Send(command, cancellationToken);
 

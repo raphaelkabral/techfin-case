@@ -7,9 +7,7 @@ namespace TechfinCase.Infrastructure.Repositories;
 
 public sealed class ClientRepository(DatabaseConnectionFactory connectionFactory) : IClientRepository
 {
-    public async Task<Client?> GetByIdAsync(
-        Guid id,
-        CancellationToken cancellationToken = default)
+    public async Task<Client?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         await using var connection = connectionFactory.Create();
 
@@ -27,9 +25,7 @@ public sealed class ClientRepository(DatabaseConnectionFactory connectionFactory
         return await connection.QuerySingleOrDefaultAsync<Client>(command);
     }
 
-    public async Task<Client?> GetByCpfAsync(
-        string cpf,
-        CancellationToken cancellationToken = default)
+    public async Task<Client?> GetByCpfAsync(string cpf, CancellationToken cancellationToken = default)
     {
         await using var connection = connectionFactory.Create();
 
@@ -47,8 +43,7 @@ public sealed class ClientRepository(DatabaseConnectionFactory connectionFactory
         return await connection.QuerySingleOrDefaultAsync<Client>(command);
     }
 
-    public async Task<IReadOnlyList<Client>> GetAllAsync(
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<Client>> GetAllAsync(CancellationToken cancellationToken = default)
     {
         await using var connection = connectionFactory.Create();
 
@@ -64,9 +59,7 @@ public sealed class ClientRepository(DatabaseConnectionFactory connectionFactory
         return clients.ToList();
     }
 
-    public async Task AddAsync(
-        Client client,
-        CancellationToken cancellationToken = default)
+    public async Task AddAsync(Client client, CancellationToken cancellationToken = default)
     {
         await using var connection = connectionFactory.Create();
 
@@ -89,10 +82,7 @@ public sealed class ClientRepository(DatabaseConnectionFactory connectionFactory
         await connection.ExecuteAsync(command);
     }
 
-    public async Task<bool> DebitLimitAsync(
-        Guid clientId,
-        decimal amount,
-        CancellationToken cancellationToken = default)
+    public async Task<bool> DebitLimitAsync(Guid clientId, decimal amount, CancellationToken cancellationToken = default)
     {
         await using var connection = connectionFactory.Create();
 

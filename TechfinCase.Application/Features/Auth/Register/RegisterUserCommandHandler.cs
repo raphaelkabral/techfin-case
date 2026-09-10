@@ -9,9 +9,7 @@ public sealed class RegisterUserCommandHandler(
     IPasswordHasher passwordHasher)
     : IRequestHandler<RegisterUserCommand, RegisterUserResult>
 {
-    public async Task<RegisterUserResult> Handle(
-        RegisterUserCommand request,
-        CancellationToken cancellationToken)
+    public async Task<RegisterUserResult> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
         var email = request.Email?.Trim().ToLowerInvariant();
 

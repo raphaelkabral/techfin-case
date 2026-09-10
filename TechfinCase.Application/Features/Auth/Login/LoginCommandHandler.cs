@@ -9,9 +9,7 @@ public sealed class LoginCommandHandler(
     ITokenService tokenService)
     : IRequestHandler<LoginCommand, LoginResponse?>
 {
-    public async Task<LoginResponse?> Handle(
-        LoginCommand request,
-        CancellationToken cancellationToken)
+    public async Task<LoginResponse?> Handle(        LoginCommand request,        CancellationToken cancellationToken)
     {
         var email = request.Email?.Trim().ToLowerInvariant();
 

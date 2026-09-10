@@ -11,14 +11,9 @@ public sealed class GetClientsQueryHandler(
 {
     private static readonly TimeSpan CacheExpiration = TimeSpan.FromMinutes(10);
 
-    public async Task<IReadOnlyList<ClientResponse>> Handle(
-        GetClientsQuery request,
-        CancellationToken cancellationToken)
+    public async Task<IReadOnlyList<ClientResponse>> Handle(GetClientsQuery request, CancellationToken cancellationToken)
     {
-        if (cacheService.TryGet<IReadOnlyList<ClientResponse>>(
-                CacheKeys.AllClients,
-                out var cachedClients) &&
-            cachedClients is not null)
+        if (cacheService.TryGet<IReadOnlyList<ClientResponse>>(CacheKeys.AllClients, out var cachedClients) && cachedClients is not null)
         {
             return cachedClients;
         }

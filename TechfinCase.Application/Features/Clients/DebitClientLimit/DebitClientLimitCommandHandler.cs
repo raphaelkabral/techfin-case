@@ -9,19 +9,14 @@ public sealed class DebitClientLimitCommandHandler(
     ICacheService cacheService)
     : IRequestHandler<DebitClientLimitCommand, bool>
 {
-    public async Task<bool> Handle(
-        DebitClientLimitCommand request,
-        CancellationToken cancellationToken)
+    public async Task<bool> Handle(DebitClientLimitCommand request, CancellationToken cancellationToken)
     {
         if (request.Amount <= 0)
         {
             return false;
         }
 
-        var updated = await clientRepository.DebitLimitAsync(
-            request.ClientId,
-            request.Amount,
-            cancellationToken);
+        var updated = await clientRepository.DebitLimitAsync(request.ClientId, request.Amount, cancellationToken);
 
         if (updated)
         {

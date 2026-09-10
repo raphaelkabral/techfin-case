@@ -12,9 +12,7 @@ namespace TechfinCase.Api.Controllers.V1;
 public sealed class ClientsController(ISender sender) : ControllerBase
 {
     [HttpPost]
-    public async Task<IActionResult> Create(
-        [FromBody] CreateClientCommand command,
-        CancellationToken cancellationToken)
+    public async Task<IActionResult> Create([FromBody] CreateClientCommand command, CancellationToken cancellationToken)
     {
         var result = await sender.Send(command, cancellationToken);
 

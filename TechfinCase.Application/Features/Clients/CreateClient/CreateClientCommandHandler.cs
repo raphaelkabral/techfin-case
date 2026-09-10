@@ -10,9 +10,7 @@ public sealed class CreateClientCommandHandler(
     ICacheService cacheService)
     : IRequestHandler<CreateClientCommand, CreateClientResponse>
 {
-    public async Task<CreateClientResponse> Handle(
-        CreateClientCommand request,
-        CancellationToken cancellationToken)
+    public async Task<CreateClientResponse> Handle(CreateClientCommand request, CancellationToken cancellationToken)
     {
         if (request.ValorLimite < 0)
         {
@@ -51,9 +49,7 @@ public sealed class CreateClientCommandHandler(
         return new CreateClientResponse(client.Id.ToString(), "OK");
     }
 
-    private static string NormalizeCpf(string cpf) =>
-        new(cpf.Where(char.IsDigit).ToArray());
+    private static string NormalizeCpf(string cpf) => new(cpf.Where(char.IsDigit).ToArray());
 
-    private static CreateClientResponse Error(string detail) =>
-        new(null, "ERRO", detail);
+    private static CreateClientResponse Error(string detail) => new(null, "ERRO", detail);
 }

@@ -8,9 +8,7 @@ namespace TechfinCase.Infrastructure.Repositories;
 public sealed class TransactionRepository(DatabaseConnectionFactory connectionFactory)
     : ITransactionRepository
 {
-    public async Task AddAsync(
-        Transaction transaction,
-        CancellationToken cancellationToken = default)
+    public async Task AddAsync(Transaction transaction, CancellationToken cancellationToken = default)
     {
         await using var connection = connectionFactory.Create();
 

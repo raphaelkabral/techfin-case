@@ -11,9 +11,7 @@ public sealed class SimulateTransactionCommandHandler(
     IMessagePublisher messagePublisher)
     : IRequestHandler<SimulateTransactionCommand, SimulateTransactionResponse>
 {
-    public async Task<SimulateTransactionResponse> Handle(
-        SimulateTransactionCommand request,
-        CancellationToken cancellationToken)
+    public async Task<SimulateTransactionResponse> Handle(SimulateTransactionCommand request, CancellationToken cancellationToken)
     {
         if (!Guid.TryParse(request.IdCliente, out var clientId) || request.ValorSimulacao <= 0)
         {
@@ -42,9 +40,7 @@ public sealed class SimulateTransactionCommandHandler(
                 transaction.Amount),
             cancellationToken);
 
-        return new SimulateTransactionResponse(
-            "APROVADO",
-            transaction.Id.ToString());
+        return new SimulateTransactionResponse("APROVADO", transaction.Id.ToString());
     }
 
     private static SimulateTransactionResponse Denied() => new("NEGADO");

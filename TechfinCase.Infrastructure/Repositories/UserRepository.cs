@@ -7,9 +7,7 @@ namespace TechfinCase.Infrastructure.Repositories;
 
 public sealed class UserRepository(DatabaseConnectionFactory connectionFactory) : IUserRepository
 {
-    public async Task<User?> GetByEmailAsync(
-        string email,
-        CancellationToken cancellationToken = default)
+    public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
     {
         await using var connection = connectionFactory.Create();
 
@@ -27,9 +25,7 @@ public sealed class UserRepository(DatabaseConnectionFactory connectionFactory) 
         return await connection.QuerySingleOrDefaultAsync<User>(command);
     }
 
-    public async Task AddAsync(
-        User user,
-        CancellationToken cancellationToken = default)
+    public async Task AddAsync(User user, CancellationToken cancellationToken = default)
     {
         await using var connection = connectionFactory.Create();
 

@@ -32,6 +32,11 @@ public sealed class DatabaseInitializer(DatabaseConnectionFactory connectionFact
                 CreatedAtUtc TEXT NOT NULL,
                 FOREIGN KEY (ClientId) REFERENCES Clients(Id)
             );
+
+            CREATE TABLE IF NOT EXISTS ProcessedMessages (
+                MessageId TEXT PRIMARY KEY,
+                ProcessedAtUtc TEXT NOT NULL
+            );
             """;
 
         var command = new CommandDefinition(sql, cancellationToken: cancellationToken);

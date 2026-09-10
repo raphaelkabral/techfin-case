@@ -12,9 +12,7 @@ public sealed class AuthController(ISender sender) : ControllerBase
 {
     [AllowAnonymous]
     [HttpPost("register")]
-    public async Task<IActionResult> Register(
-        [FromBody] RegisterUserCommand command,
-        CancellationToken cancellationToken)
+    public async Task<IActionResult> Register([FromBody] RegisterUserCommand command, CancellationToken cancellationToken)
     {
         var result = await sender.Send(command, cancellationToken);
 
@@ -32,9 +30,7 @@ public sealed class AuthController(ISender sender) : ControllerBase
 
     [AllowAnonymous]
     [HttpPost("login")]
-    public async Task<IActionResult> Login(
-        [FromBody] LoginCommand command,
-        CancellationToken cancellationToken)
+    public async Task<IActionResult> Login([FromBody] LoginCommand command, CancellationToken cancellationToken)
     {
         var result = await sender.Send(command, cancellationToken);
 

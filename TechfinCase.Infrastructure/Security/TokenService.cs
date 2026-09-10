@@ -32,8 +32,6 @@ public sealed class TokenService(IOptions<JwtOptions> options) : ITokenService
             expires: expiresAtUtc,
             signingCredentials: credentials);
 
-        return (
-            new JwtSecurityTokenHandler().WriteToken(token),
-            expiresAtUtc);
+        return (new JwtSecurityTokenHandler().WriteToken(token), expiresAtUtc);
     }
 }
